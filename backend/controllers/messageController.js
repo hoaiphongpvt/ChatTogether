@@ -100,3 +100,27 @@ exports.getAllMessagesOfUser = async (req, res) => {
         })
     }
 }
+
+exports.getMessages = async (req, res) => {
+    try {
+        const id1 = req.body.id1
+        const id2 = req.body.id2
+
+        const data = await Message.find({
+            $or: [
+                { $and: [{ from: id1 }, { to: id2 }] },
+                { $and: [{ from: id2 }, { to: id1 }] },
+            ],
+        }).sort({ sentAt: 1 })
+
+        res.status(200).json({
+            status: 'success',
+            data,
+        })
+    } catch (err) {
+        res.status(500).json({
+            status: 'fail',
+            message: err.message,
+        })
+    }
+}

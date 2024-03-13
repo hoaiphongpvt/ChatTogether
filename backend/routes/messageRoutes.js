@@ -14,4 +14,8 @@ router
     .patch(authController.protect, messageController.updateMessage)
     .delete(authController.protect, messageController.deleteMessage)
 
+router
+    .route('/inbox')
+    .post(authController.protect, messageController.getMessages)
+
 module.exports = router
