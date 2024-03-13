@@ -1,0 +1,42 @@
+//- <!-- Navbar -->
+nav(class="navbar navbar-expand-lg navbar-light bg-body-tertiary")
+    //-   <!-- Container wrapper -->
+    div(class="container")
+        //- <!-- Navbar brand -->
+        a(class="navbar-brand me-2 d-flex align-items-center" href="/")
+            img(src="/img/favicon-1.png"
+                height="28"
+                alt="Chat Logo"
+                style="margin-top: -2px;")
+            p.text-muted.h6.mt-2 Chat Together
+        if user 
+            div(class="dropdown")
+                a(data-mdb-dropdown-init
+                class="dropdown-toggle d-flex align-items-center hidden-arrow"
+                href="#"
+                id="navbarDropdownMenuAvatar"
+                role="button"
+                aria-expanded="false")     
+
+                    p.text-muted.h6.p-2.mt-2=user.name
+
+                    img(src=`/img/user/${user.avatar}`
+                        class="rounded-circle"
+                        width="32"
+                        height="32"
+                        alt=`${user.name.split(' ')[0]}`
+                        style="object-fit: cover;")
+
+
+                ul(class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar")
+                    li
+                        a(class="dropdown-item" href="#") My profile
+                    li
+                        a(class="dropdown-item" href="#") Settings
+                    
+                    li
+                        button(class="dropdown-item" id='btn-logout') Logout
+        else            
+            div(class="d-flex align-items-center")
+                a(data-mdb-ripple-init type="button" class="btn btn-link px-3 me-2" href="/login") Login
+                button(data-mdb-ripple-init type="button" class="btn btn-primary me-3") Sign up

@@ -1,0 +1,25 @@
+extends base
+
+block content 
+    section
+        .container
+            div(class="row p-5 mt-5 mb-4 d-flex align-items-center")
+                div(class="col-sm-6 text-black d-flex align-items-center justify-content-center")
+                    div(class="d-flex align-items-center")
+                        form(style="width: 23rem;")
+                            h3(class="fw-normal mb-3 pb-3" style="letter-spacing: 1px; text-align: center") LOG IN
+                            div(class="form-outline mb-4")
+                                label(class="form-label") Email
+                                input(type="email" id="email" class="form-control form-control-lg rounded-5 border border-1")
+                            div(class="form-outline mb-4")
+                                label(class="form-label") Password
+                                input(type="password" id="password" class="form-control form-control-lg rounded-5 border border-1")
+                            div(class="pt-1 mb-4")
+                                button(class="btn btn-info btn-lg btn-block" type="button" id="btn-login") Login
+                            p(class="small mb-3 pb-lg-2")
+                                a(class="text-muted" href="#!") Forgot password?
+                            p(class="text-muted" href="#!") Don't have an account? 
+                                a(href="#!" class="link-info") Register here
+
+                div(class="col-sm-6 px-0 d-none d-sm-block")
+                    img(src="/img/chat-icon.png" alt="Login image" class="w-100 h-100 rounded-9" style="object-fit: cover; object-position: left;")
