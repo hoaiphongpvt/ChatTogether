@@ -1,5 +1,5 @@
 if (inbox)
-    div(class="col-md-6 col-lg-7 col-xl-8")
+    div(class="col-md-6 col-lg-7 col-xl-8 mt-3")
         div(class="mt-2 mb-4 d-flex justify-content-center align-items-center")
             img(src=`/img/user/${toUser.avatar}`
                 alt="avatar"
@@ -11,7 +11,7 @@ if (inbox)
                 p(class="fw-bold mb-0 h4")=toUser.name
                 p(class="text-muted mb-0") Active now
                             
-        ul(class="list-unstyled" style="max-height: 600px; min-height: 500px; overflow-x: hidden; overflow-y: scroll;") 
+        ul(id="messageContainer" class="list-unstyled" style="max-height: 400px; min-height: 400px; overflow-x: hidden; overflow-y: scroll;") 
             each box in inbox
                 if (box.from.id === toUser.id)
                     li(class="d-flex mb-4")
@@ -32,7 +32,7 @@ if (inbox)
                         div(class="card")
                             div(class="card-header d-flex justify-content-end p-1")
                                 p(class="text-muted small mb-0 p-1")=box.sentAt.toLocaleTimeString('en-US', { hour12: false }).split(':').slice(0, -1).join(':')
-                            div(class="card-body p-2 d-flex justify-content-end")
+                            div(class="card-body p-2 d-flex justify-content-end" style="background-color: #6e08ef; color: #FFFFFF")
                                 p(class="mb-0")=box.content
                         img(src=`/img/user/${currUser.avatar}`
                             alt="avatar"
@@ -42,8 +42,9 @@ if (inbox)
                             width="40")
                 
             
-        div(class="bg-white mb-3")
-            div(class="form-outline")
-                textarea(class="form-control" id="textAreaExample" rows="2")
+        form(action="") 
+            div(class="bg-white mb-3")
+                div(class="form-outline")
+                    input(type="text" id="txtContent" class="form-control" placeholder="Enter message..." autocomplete="off")
 
-        button(type="button" class="btn btn-info btn-rounded float-end") Send
+            button(type="button" id="btnSend" class="btn btn-info btn-rounded float-end") Send

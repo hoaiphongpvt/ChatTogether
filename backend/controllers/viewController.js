@@ -5,7 +5,9 @@ exports.chat = async (req, res) => {
     try {
         const conversations = await Message.find({
             $or: [{ from: req.user.id }, { to: req.user.id }],
-        })
+        }).sort('-sentAt')
+
+        console.log(conversations)
 
         res.status(200).render('chat', {
             title: 'Chat Together',
@@ -23,7 +25,7 @@ exports.message = async (req, res) => {
     try {
         const conversations = await Message.find({
             $or: [{ from: req.user.id }, { to: req.user.id }],
-        })
+        }).sort('-sentAt')
 
         const id1 = req.query.currUserId
         const id2 = req.query.toUserId
