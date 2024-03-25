@@ -21,6 +21,11 @@ router
     .route('/')
     .get(authController.protect, authController.isLoggedIn, viewController.chat)
 
-router.route('/login').get(authController.isLoggedIn, viewController.login)
+router
+    .route('/login')
+    .get(authController.isLoggedIn, viewController.loadFormLogin)
+router
+    .route('/signup')
+    .get(authController.isLoggedIn, viewController.loadFormSignup)
 
 module.exports = router

@@ -7,8 +7,6 @@ exports.chat = async (req, res) => {
             $or: [{ from: req.user.id }, { to: req.user.id }],
         }).sort('-sentAt')
 
-        console.log(conversations)
-
         res.status(200).render('chat', {
             title: 'Chat Together',
             conversations,
@@ -55,8 +53,14 @@ exports.message = async (req, res) => {
     }
 }
 
-exports.login = (req, res) => {
+exports.loadFormLogin = (req, res) => {
     res.status(200).render('login', {
         title: 'Log in',
+    })
+}
+
+exports.loadFormSignup = (req, res) => {
+    res.status(200).render('signup', {
+        title: 'Sign up an account',
     })
 }
