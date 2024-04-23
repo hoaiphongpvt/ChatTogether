@@ -7,6 +7,22 @@ exports.chat = async (req, res) => {
             $or: [{ from: req.user.id }, { to: req.user.id }],
         }).sort('-sentAt')
 
+        const arrFromIdUsers = []
+        const arrToIdUsers = []
+
+        // Giả sử `conversations` là mảng các cuộc trò chuyện
+        conversations.map((el) => {
+            arrFromIdUsers.push(el.from._id.toString()) // Chuyển đổi ObjectId thành chuỗi
+            arrToIdUsers.push(el.to._id.toString()) // Chuyển đổi ObjectId thành chuỗi
+        })
+
+        const userIdsSet = new Set([...arrFromIdUsers, ...arrToIdUsers])
+
+        // Chuyển đổi set thành một mảng để hiển thị các ID
+        const userIdsArray = Array.from(userIdsSet)
+
+        console.log('ID Users: ', userIdsArray)
+
         res.status(200).render('chat', {
             title: 'Chat Together',
             conversations,

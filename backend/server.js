@@ -42,7 +42,6 @@ app.use('/api/message', messageRoutes)
 // Thêm xử lý WebSocket connection
 wss.on('connection', function connection(ws) {
     ws.on('message', function incoming(message) {
-        console.log(message)
         wss.clients.forEach(function each(client) {
             if (client.readyState === WebSocket.OPEN) {
                 client.send('reload') // Gửi thông điệp "reload" đến các máy khách khác
